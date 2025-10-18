@@ -70,7 +70,7 @@ a {
   border-bottom: 1px solid rgba(255, 215, 100, 0.12);
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease;
-  overflow: hidden; /* ensures content stays within width */
+  /*overflow: hidden;  ensures content stays within width */
 }
 
 .logo {
@@ -453,3 +453,4 @@ canvas {
   0% { opacity: 0; transform: translateY(40px); }
   100% { opacity: 1; transform: translateY(0); }
 }
+
