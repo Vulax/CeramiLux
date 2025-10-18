@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CeramiLux - Luxury Ceramic Flooring</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="lux-header">
+  <nav class="nav">
+    <div class="logo">CeramiLux</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#product-showcase">Signature Tiles</a></li>
+      <li><a href="#testimonials">Clients</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" class="theme-switch" aria-label="Toggle theme">
+      <span class="switch-handle"></span>
+    </button>
+    <div class="menu-toggle">☰</div>
+  </nav>
+</header>
+
+
+    </nav>
+
+    <div class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">Timeless Luxury Floors</h1>
+        <p class="hero-subtitle">Crafted with precision. Designed to inspire.</p>
+        <a href="#contact" class="btn gold-btn">Book Consultation</a>
+      </div>
+    </div>
+  </header>
+
+
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About CeramiLux</h2>
+      <p>At CeramiLux, we don’t just install floors — we create elevated living experiences. Our premium ceramic flooring services merge aesthetic brilliance with enduring quality. Discerning homeowners and top-tier architects trust us for exquisite craftsmanship and flawless execution.</p>
+    </div>
+  </section>
+
+  <section id="services" class="section light-bg">
+    <div class="container">
+      <h2>Our Expertise</h2>
+      <div class="service-grid">
+        <div class="service-item">
+          <h3>Private Residences</h3>
+          <p>Impeccable ceramic flooring tailored for luxury homes and estates.</p>
+        </div>
+        <div class="service-item">
+          <h3>High-End Commercial</h3>
+          <p>Statement floors for galleries, hotels, and designer boutiques.</p>
+        </div>
+        <div class="service-item">
+          <h3>Custom Mosaics</h3>
+          <p>Artisan ceramic patterns crafted for a distinct personal touch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="section">
+    <div class="container">
+      <h2>Signature Projects</h2>
+      <div class="gallery">
+        <img src="https://source.unsplash.com/600x400/?luxury-floor" alt="Luxury Floor 1"/>
+        <img src="https://source.unsplash.com/600x400/?interior-design-floor" alt="Luxury Floor 2"/>
+        <img src="https://source.unsplash.com/600x400/?ceramic-luxury" alt="Luxury Floor 3"/>
+        <img src="https://source.unsplash.com/600x400/?modern-tile" alt="Luxury Floor 4"/>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="section light-bg">
+    <div class="container">
+      <h2>Client Impressions</h2>
+      <div class="testimonial">
+        <p>“The attention to detail was phenomenal. Our floors are beyond perfect.”</p>
+        <span>– Olivia R., Beverly Hills</span>
+      </div>
+      <div class="testimonial">
+        <p>“CeramiLux turned our lobby into a luxury statement. World-class work.”</p>
+        <span>– Mateo C., Hotel Astoria</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form id="contact-form" class="form">
+        <div class="form-group">
+          <input type="text" name="name" required />
+          <label>Your Name</label>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" required />
+          <label>Email Address</label>
+        </div>
+        <div class="form-group">
+          <textarea name="message" rows="5" required></textarea>
+          <label>Your Message</label>
+        </div>
+        <button type="submit" class="btn gold-btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="product-showcase" class="section">
+    <h2>Our Signature Tiles</h2>
+    <p class="section-description">Hover over a tile below to explore the texture and details.</p>
+    <div class="floors-container"></div>
+    <div id="tile-info" class="tile-info">
+      <h3 id="tile-name">Tile Name</h3>
+      <p id="tile-description">Tile description will appear here on hover.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 CeramiLux. Designed for those who demand the best.</p>
+  </footer>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
+  <script defer src="script.js"></script> 
+  <script defer src="levitating-floors.js"></script>
+
+</body>
+</html>
