@@ -1,24 +1,13 @@
 /* =============================
-   CeramiLux Prestige (v3)
+   CeramiLux Prestige (Dark Edition)
    ============================= */
 
 /* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500&display=swap');
 
-/* Root colors for Light / Dark theme */
+/* Root colors (Dark Theme) */
 :root {
-  --bg-color: #fdfdfc;
-  --text-color: #1b1b1b;
-  --subtext-color: #555;
-  --accent-gold: #c8a951;
-  --nav-bg: #0d0d0d;
-  --nav-text: #eee;
-  --card-bg: #fff;
-  --shadow-color: rgba(0,0,0,0.08);
-}
-
-[data-theme="dark"] {
-  --bg-color: #111;
+  --bg-color: #0d0d0d;
   --text-color: #f5f5f5;
   --subtext-color: #bbb;
   --accent-gold: #d3b45a;
@@ -54,110 +43,87 @@ a {
 }
 
 /* =============================
-   HEADER + HERO
+   HEADER + NAVIGATION
    ============================= */
 
-/* Glass Header */
+/* =============================
+   REFINED LUXURY NAVIGATION BAR
+   ============================= */
+
+/* =============================
+   FINAL LUXURY HEADER FIXED WIDTH
+   ============================= */
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0.9rem 2rem;
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
+  box-sizing: border-box;
   z-index: 999;
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 215, 100, 0.12);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
   transition: all 0.4s ease;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background: rgba(25, 25, 25, 0.25);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.nav.scrolled {
-  background: rgba(20, 20, 20, 0.6);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden; /* ensures content stays within width */
 }
 
 .logo {
   font-family: 'Cinzel', serif;
-  font-size: 1.8rem;
-  color: var(--accent-gold);
-  letter-spacing: 2px;
-  transition: color 0.3s;
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  flex-shrink: 0;
+  background: linear-gradient(90deg, #f3e4a6, #d4b45f, #c4a045);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 12px rgba(200,169,81,0.3);
 }
 
-.logo:hover {
-  text-shadow: 0 0 8px rgba(200,169,81,0.6);
-}
-
-/* Nav Links */
 .nav-links {
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  gap: 1.8rem;
   list-style: none;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  flex-shrink: 1;
+  flex-wrap: nowrap;
 }
 
 .nav-links a {
-  color: var(--nav-text);
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
   position: relative;
+  color: #f0f0f0;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   font-weight: 500;
-  transition: color 0.3s;
+  padding: 0.3rem 0;
+  transition: all 0.3s ease;
+}
+.nav-links a:hover {
+  color: var(--accent-gold);
+  text-shadow: 0 0 8px rgba(200,169,81,0.4);
 }
 
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background: var(--accent-gold);
-  transition: width 0.3s ease;
-}
 .nav-links a:hover::after {
   width: 100%;
 }
 
-/* Theme Switch */
-.theme-switch {
-  margin-left: 1.5rem;
-  margin-right: 0.5rem;
-  position: relative;
-  width: 60px;
-  height: 30px;
-  border-radius: 30px;
-  background: linear-gradient(90deg, #d4b45f, #bfa44d);
-  border: none;
-  cursor: pointer;
-  transition: background 0.4s ease;
-  display: flex;
-  align-items: center;
-  padding: 3px;
-  box-shadow: 0 0 10px rgba(200,169,81,0.3);
-}
-.theme-switch .switch-handle {
-  width: 24px;
-  height: 24px;
-  background: var(--card-bg);
-  border-radius: 50%;
-  transition: transform 0.4s ease, background 0.3s ease;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
-}
-[data-theme="dark"] .theme-switch {
-  background: linear-gradient(90deg, #444, #222);
-}
-[data-theme="dark"] .theme-switch .switch-handle {
-  transform: translateX(30px);
-  background: var(--accent-gold);
+.nav-links a:hover {
+  color: var(--accent-gold);
+  text-shadow: 0 0 8px rgba(200,169,81,0.4);
 }
 
-/* Hamburger Menu (☰ → ✕) */
+
+/* Hamburger Menu */
 .menu-toggle {
   width: 32px;
   height: 24px;
@@ -167,7 +133,7 @@ a {
   transform: translateY(-50%);
   cursor: pointer;
   z-index: 1002;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -178,7 +144,7 @@ a {
   background: var(--accent-gold);
   border-radius: 3px;
   transition: all 0.4s ease;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.6), 0 0 4px rgba(200,169,81,0.6);
+  box-shadow: 0 0 4px rgba(200,169,81,0.6);
 }
 .menu-toggle.active span:nth-child(1) {
   transform: translateY(10px) rotate(45deg);
@@ -189,51 +155,12 @@ a {
 .menu-toggle.active span:nth-child(3) {
   transform: translateY(-10px) rotate(-45deg);
 }
-[data-theme="light"] .menu-toggle span,
-[data-theme="dark"] .menu-toggle span {
-  background: var(--accent-gold);
-}
 
 /* Responsive Nav */
 @media (max-width: 850px) {
-  .nav {
-    justify-content: space-between;
-    padding: 1rem 1.2rem;
-    position: relative;
-  }
-
-  /* Hamburger ikonica */
   .menu-toggle {
     display: flex;
-    position: absolute;
-    right: 1.2rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1003;
   }
-
-  /* Tema switch - pomeren levo i unutar margine */
-  #theme-toggle {
-    position: absolute;
-    right: 60px; /* ranije 70px, sad bliže unutra */
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1002;
-  }
-
-  /* Umanjen switch da stane lepše */
-  .theme-switch {
-    width: 48px;
-    height: 24px;
-    border: 1px solid rgba(200,169,81,0.4);
-  }
-
-  .theme-switch .switch-handle {
-    width: 18px;
-    height: 18px;
-  }
-
-  /* --- Fullscreen Menu Overlay --- */
   .nav-links {
     position: fixed;
     top: 0;
@@ -252,44 +179,16 @@ a {
     transition: opacity 0.4s ease;
     z-index: 1001;
   }
-
   .nav-links.open {
     opacity: 1;
     pointer-events: auto;
   }
-
   .nav-links a {
     font-size: 1.3rem;
     color: var(--accent-gold);
     font-weight: 500;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
   }
-
-  .nav-links a:hover {
-    color: #fff;
-    text-shadow: 0 0 10px rgba(200,169,81,0.7);
-  }
-
-  /* Fade-in animacija linkova */
-  .nav-links li {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.4s ease;
-  }
-  .nav-links.open li {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .nav-links.open li:nth-child(1) { transition-delay: 0.1s; }
-  .nav-links.open li:nth-child(2) { transition-delay: 0.2s; }
-  .nav-links.open li:nth-child(3) { transition-delay: 0.3s; }
-  .nav-links.open li:nth-child(4) { transition-delay: 0.4s; }
-  .nav-links.open li:nth-child(5) { transition-delay: 0.5s; }
-  .nav-links.open li:nth-child(6) { transition-delay: 0.6s; }
 }
-
-
 
 /* =============================
    HERO SECTION
@@ -297,36 +196,34 @@ a {
 .hero {
   position: relative;
   height: 100vh;
-  background: linear-gradient(180deg, rgba(255,255,255,0.35), rgba(245,245,245,0.15)),
+  background: linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,0.7)),
               url('assets/bg.jpg') center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #2b2b2b;
-  transition: background 0.5s;
+  color: #f5f5f5;
   text-align: center;
   padding: 2rem;
 }
-[data-theme="dark"] .hero {
-  background: linear-gradient(180deg, rgba(15,15,15,0.75), rgba(15,15,15,0.55)),
-              url('assets/bg.jpg') center/cover no-repeat;
-  color: #f5f3e8;
-}
+
 .hero-title {
   font-family: 'Cinzel', serif;
   font-size: 4rem;
   letter-spacing: 3px;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #e2cc87, var(--accent-gold));
+  background: linear-gradient(90deg, #e8d08c, #c9a94f);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(200,169,81,0.4);
 }
+
 .hero-subtitle {
   font-size: 1.3rem;
-  font-family: 'Inter', sans-serif;
-  color: var(--subtext-color);
+  color: #ddd;
   margin-top: 1rem;
+  text-shadow: 0 0 10px rgba(0,0,0,0.6);
 }
+
 .gold-btn {
   background: transparent;
   border: 1px solid var(--accent-gold);
@@ -340,13 +237,13 @@ a {
   border-radius: 6px;
 }
 .gold-btn:hover {
-  background: linear-gradient(90deg, var(--accent-gold), #b89443);
-  color: #fff;
-  box-shadow: 0 0 20px rgba(200,169,81,0.4);
+  background: var(--accent-gold);
+  color: #111;
+  box-shadow: 0 0 20px rgba(200,169,81,0.5);
 }
 
 /* =============================
-   Rest of the Page (unchanged)
+   SECTIONS
    ============================= */
 .section {
   padding: 6rem 2rem;
@@ -378,10 +275,8 @@ h2 {
   font-weight: 600;
 }
 
-/* Other sections remain unchanged */
-
 /* =============================
-   Services
+   SERVICES
    ============================= */
 .service-grid {
   display: flex;
@@ -396,15 +291,16 @@ h2 {
   max-width: 320px;
   border-radius: 12px;
   box-shadow: 0 3px 15px var(--shadow-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .service-item:hover {
   transform: translateY(-10px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
 }
 .service-item h3 {
   font-family: 'Cinzel', serif;
   font-size: 1.3rem;
+  color: var(--accent-gold);
 }
 .service-item p {
   color: var(--subtext-color);
@@ -412,7 +308,7 @@ h2 {
 }
 
 /* =============================
-   Gallery
+   GALLERY
    ============================= */
 .gallery {
   display: grid;
@@ -426,11 +322,11 @@ h2 {
 }
 .gallery img:hover {
   transform: scale(1.03);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
 }
 
 /* =============================
-   Testimonials
+   TESTIMONIALS
    ============================= */
 .testimonial {
   text-align: center;
@@ -443,12 +339,11 @@ h2 {
   display: block;
   margin-top: 1rem;
   font-style: normal;
-  font-family: 'Inter', sans-serif;
-  color: #777;
+  color: #999;
 }
 
 /* =============================
-   Contact Form
+   CONTACT FORM (Dark Improved)
    ============================= */
 .form {
   max-width: 600px;
@@ -461,23 +356,25 @@ h2 {
 input, textarea {
   width: 100%;
   padding: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(200,169,81,0.3);
   outline: none;
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   border-radius: 6px;
-  background: #fff;
-  transition: border 0.3s, box-shadow 0.3s;
+  background: rgba(30, 30, 30, 0.9);
+  color: #f0f0f0;
+  transition: border 0.3s, box-shadow 0.3s, background 0.3s;
 }
 input:focus, textarea:focus {
   border-color: var(--accent-gold);
-  box-shadow: 0 0 0 2px rgba(200,169,81,0.15);
+  box-shadow: 0 0 12px rgba(200,169,81,0.4);
+  background: rgba(40,40,40,0.95);
 }
 label {
   position: absolute;
   top: 1rem;
   left: 1rem;
-  color: #aaa;
+  color: #bbb;
   transition: 0.3s;
   pointer-events: none;
   font-size: 0.95rem;
@@ -490,12 +387,13 @@ textarea:not(:placeholder-shown) + label {
   left: 10px;
   font-size: 0.8rem;
   color: var(--accent-gold);
-  background: white;
-  padding: 0 5px;
+  background: rgba(17,17,17,0.9);
+  padding: 0 6px;
+  border-radius: 4px;
 }
 
 /* =============================
-   Footer
+   FOOTER
    ============================= */
 footer {
   background: var(--nav-bg);
@@ -508,18 +406,12 @@ footer {
 }
 
 /* =============================
-   3D Product Showcase
+   3D PRODUCT SHOWCASE
    ============================= */
 #product-showcase {
   background: var(--bg-color);
   text-align: center;
   padding: 6rem 2rem;
-  transition: background 0.5s;
-}
-#product-showcase h2 {
-  font-family: 'Cinzel', serif;
-  font-size: 2.4rem;
-  margin-bottom: 1rem;
 }
 .section-description {
   color: var(--subtext-color);
@@ -534,7 +426,7 @@ footer {
   overflow: hidden;
   position: relative;
   box-shadow: 0 8px 25px var(--shadow-color);
-  background: radial-gradient(circle at center, var(--bg-color), #f5f4f1);
+  background: radial-gradient(circle at center, var(--bg-color), #111);
 }
 canvas {
   display: block;
@@ -547,6 +439,7 @@ canvas {
 .tile-info h3 {
   font-family: 'Cinzel', serif;
   font-size: 1.6rem;
+  color: var(--accent-gold);
 }
 .tile-info p {
   font-size: 1rem;

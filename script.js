@@ -1,15 +1,3 @@
-// 🌗 Elegant Theme Toggle
-const toggleBtn = document.getElementById('theme-toggle');
-toggleBtn.addEventListener('click', () => {
-  const currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', currentTheme);
-  localStorage.setItem('ceramilux-theme', currentTheme);
-});
-
-// Load saved preference
-const saved = localStorage.getItem('ceramilux-theme');
-if (saved) document.documentElement.setAttribute('data-theme', saved);
-
 // 🪶 Scroll Fade-in for Sections
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
