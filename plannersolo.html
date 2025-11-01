@@ -21,6 +21,115 @@
     .stat{background:#0f1012;border:1px solid #222428;border-radius:10px;padding:10px}
     .stat b{display:block;font-size:12px;color:#9aa0a6;margin-bottom:4px}
     .val{font-size:20px;font-weight:700;color:#21c37a}
+    /* ===== CeramiLux Planner • Compact & Responsive ===== */
+
+/* Bazna tipografija */
+:root {
+  --fs-body: clamp(14px, 1.4vw, 16px);
+  --fs-label: clamp(12px, 1.1vw, 14px);
+  --fs-title: clamp(18px, 2.2vw, 24px);
+  --fs-stat: clamp(14px, 1.4vw, 16px);
+  --input-h: 44px;           /* desktop visina inputs */
+  --input-h-sm: 40px;        /* mobile visina inputs */
+}
+
+body { font-size: var(--fs-body); }
+
+/* Glavni layout: levo forma, desno 3D */
+#planner-wrap {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 18px 22px 28px;
+}
+#planner-grid {
+  display: grid;
+  grid-template-columns: 360px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+/* Kartice */
+.clx-card { border-radius: 14px; }
+.clx-title { font-size: var(--fs-title); margin: 4px 0 10px; }
+
+/* Forma kompaktno */
+#planner .clx-form-grid { gap: 10px 12px; }
+#planner .clx-group { margin-bottom: 14px; }
+#planner .clx-label { font-size: var(--fs-label); }
+#planner .clx-input {
+  height: var(--input-h);
+  padding: 14px 12px 6px 12px; /* za floating label */
+  border-radius: 10px;
+}
+
+/* Dugme */
+.clx-btn { height: 42px; border-radius: 10px; }
+
+/* Stat kartice manje */
+.clx-stat { padding: 12px; border-radius: 12px; }
+.clx-stat .label { font-size: var(--fs-label); }
+.clx-stat .value { font-size: clamp(16px, 1.6vw, 20px); }
+
+/* 3D panel nek zauzme visinu ekrana ispod headera */
+#viewer-panel {
+  min-height: clamp(380px, 62vh, 74vh);
+  display: flex; flex-direction: column;
+}
+#viewer {
+  flex: 1 1 auto;
+  min-height: 320px;        /* fallback */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Breakpoints */
+@media (max-width: 1200px) {
+  #planner-grid { grid-template-columns: 320px minmax(0, 1fr); }
+}
+@media (max-width: 980px) {
+  :root { --input-h: 42px; }
+  #planner-grid { grid-template-columns: 1fr; }
+  #viewer-panel { min-height: clamp(360px, 56vh, 68vh); }
+}
+@media (max-width: 640px) {
+  :root {
+    --input-h: var(--input-h-sm);
+    --fs-title: 18px;
+  }
+  #planner-wrap { padding: 12px 14px 22px; }
+  #planner .clx-form-grid { grid-template-columns: 1fr; gap: 8px; }
+  .clx-btn { height: 40px; }
+  .clx-stat { padding: 10px; }
+}
+
+/* -- Dva inputa u jednom redu (desktop), jedan na mobilnom -- */
+#planner .clx-form-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 12px;
+  row-gap: 12px;
+}
+
+#planner .clx-group{ margin-bottom: 0; }          /* ukloni suvišan vert. razmak */
+#planner .clx-group.span-2{ grid-column: 1 / -1; } /* element preko cele širine */
+
+/* Kompaktniji inputi da sve lepo stane */
+#planner .clx-input{
+  height: 42px;
+  padding: 12px 12px 6px 12px;   /* floating label */
+  border-radius: 10px;
+}
+#planner .clx-label{ top: 10px; }                  /* fine-tune lebdeće etikete */
+#planner .clx-input:focus + .clx-label,
+#planner .clx-input:not(:placeholder-shown) + .clx-label{
+  top: 4px; font-size: .78rem;
+}
+
+/* Mobilno: prelom na jedan stubac */
+@media (max-width: 900px){
+  #planner .clx-form-grid{ grid-template-columns: 1fr; }
+}
+
   </style>
 </head>
 <body>
@@ -39,43 +148,89 @@
     <br><br><br><br>
     <div class="grid">
       <section class="panel">
-        <div id="planner">
- <div class="clx-group">
-  <input id="roomLen" class="clx-input" type="number" step="0.01" placeholder=" " value="5" />
-  <label for="roomLen" class="clx-label">Dužina sobe (m)</label>
-</div>
+       <div id="planner">
+  <div class="clx-card" style="padding:18px;">
+    <div class="clx-form-grid">
+      <div class="clx-group clx-number">
+        <input id="roomLen" class="clx-input" type="number" value="5" placeholder=" " />
+        <label for="roomLen" class="clx-label">Dužina sobe (m)</label>
+        <div class="clx-stepper">
+    <button type="button" aria-label="Povećaj" data-step="up">+</button>
+    <button type="button" aria-label="Smanji"  data-step="down">−</button>
+  </div>
+      </div>
 
-<div class="clx-group">
-  <input id="roomWid" class="clx-input" type="number" step="0.01" placeholder=" " value="4" />
-  <label for="roomWid" class="clx-label">Širina sobe (m)</label>
-</div>
+      <div class="clx-group">
+        <input id="roomWid" class="clx-input" type="number" value="4" placeholder=" " />
+        <label for="roomWid" class="clx-label">Širina sobe (m)</label>
+        <div class="clx-stepper">
+    <button type="button" aria-label="Povećaj" data-step="up">+</button>
+    <button type="button" aria-label="Smanji"  data-step="down">−</button>
+  </div>
+        
+      </div>
 
-<div class="clx-group">
-  <input id="tileLen" class="clx-input" type="number" placeholder=" " value="60" />
-  <label for="tileLen" class="clx-label">Dužina pločice (cm)</label>
-</div>
+      <div class="clx-group">
+        <input id="tileLen" class="clx-input" type="number" value="60" placeholder=" " />
+        <label for="tileLen" class="clx-label">Dužina pločice (cm)</label>
+        <div class="clx-stepper">
+    <button type="button" aria-label="Povećaj" data-step="up">+</button>
+    <button type="button" aria-label="Smanji"  data-step="down">−</button>
+  </div>
+      </div>
 
-<div class="clx-group">
-  <input id="tileWid" class="clx-input" type="number" placeholder=" " value="60" />
-  <label for="tileWid" class="clx-label">Širina pločice (cm)</label>
-</div>
+      <div class="clx-group">
+        <input id="tileWid" class="clx-input" type="number" value="60" placeholder=" " />
+        <label for="tileWid" class="clx-label">Širina pločice (cm)</label>
+        <div class="clx-stepper">
+    <button type="button" aria-label="Povećaj" data-step="up">+</button>
+    <button type="button" aria-label="Smanji"  data-step="down">−</button>
+  </div>
+      </div>
 
-<div class="clx-group">
-  <input id="priceM2" class="clx-input" type="number" placeholder=" " value="3500" />
-  <label for="priceM2" class="clx-label">Cena po m² (RSD)</label>
-</div>
+      <div class="clx-group">
+        <input id="priceM2" class="clx-input" type="number" value="3500" placeholder=" " />
+        <label for="priceM2" class="clx-label">Cena po m² (RSD)</label>
+        <div class="clx-stepper">
+    <button type="button" aria-label="Povećaj" data-step="up">+</button>
+    <button type="button" aria-label="Smanji"  data-step="down">−</button>
+  </div>
+      </div>
 
-<div class="clx-group">
-  <input id="perBox" class="clx-input" type="number" placeholder=" " value="6" />
-  <label for="perBox" class="clx-label">Komada u paketu</label>
-</div>
+      <div class="clx-group">
+        <input id="perBox" class="clx-input" type="number" value="6" placeholder=" " />
+        <label for="perBox" class="clx-label">Komada u paketu</label>
+        <div class="clx-stepper">
+    <button type="button" aria-label="Povećaj" data-step="up">+</button>
+    <button type="button" aria-label="Smanji"  data-step="down">−</button>
+  </div>
+      </div>
 
-<div class="clx-group">
-  <input id="waste" class="clx-input" type="number" placeholder=" " value="8" />
-  <label for="waste" class="clx-label">Otpad (%)</label>
-</div>
+      <div class="clx-group">
+        <input id="grout" class="clx-input" type="number" value="2" placeholder=" " />
+        <label for="grout" class="clx-label">Fuga (mm)</label>
+        <div class="clx-stepper">
+    <button type="button" aria-label="Povećaj" data-step="up">+</button>
+    <button type="button" aria-label="Smanji"  data-step="down">−</button>
+  </div>
+      </div>
 
-        <button id="calc" class="btn">Izračunaj</button>
+      <div class="clx-group">
+        <input id="waste" class="clx-input" type="number" value="8" placeholder=" " />
+        <label for="waste" class="clx-label">Otpad (%)</label>
+        <div class="clx-stepper">
+    <button type="button" aria-label="Povećaj" data-step="up">+</button>
+    <button type="button" aria-label="Smanji"  data-step="down">−</button>
+  </div>
+      </div>
+
+      <!-- dugme preko cele širine -->
+      <div class="clx-group span-2">
+        <button id="calc" class="btn" style="width:100%;">Izračunaj</button>
+      </div>
+    </div>
+  </div>
+</div>
         <div class="out">
           <div class="stat"><b>Površina</b><div id="oArea" class="val">—</div></div>
           <div class="stat"><b>Komada</b><div id="oTiles" class="val">—</div></div>

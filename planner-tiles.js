@@ -43,6 +43,7 @@
   const $ = (id) => document.getElementById(id);
 
   async function start() {
+    
     if (!window.THREE) { console.error('THREE nije učitan.'); return; }
 
     // ---- UI refs ----
@@ -285,4 +286,53 @@ ui.calc && ui.calc.addEventListener('click', updateCalcAndView);
 
     animate();
   }
+(function () {
+  const root = document.getElementById('planner') || document;
+
+  const stepOf = (input) => {
+    const s = parseFloat(input.step);
+    return Number.isFinite(s) && s > 0 ? s : 1;
+  };
+  const clamp = (input, val) => {
+    const min = input.min !== '' ? parseFloat(input.min) : -Infinity;
+    const max = input.max !== '' ? parseFloat(input.max) :  Infinity;
+    return Math.min(max, Math.max(min, val));
+  };
+  const setVal = (input, val) => {
+    // ispravi floating greške (npr. 0.1+0.2)
+    const s = stepOf(input);
+    const decimals = (s.toString().split('.')[1] || '').length;
+    const fixed = Number(val.toFixed(Math.min(6, decimals || 0)));
+    input.value = fixed;
+    input.classList.toggle('filled', String(input.value).trim() !== '');
+    // okini tvoj kalkulator
+    input.dispatchEvent(new Event('input',  { bubbles: true }));
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  };
+
+  // EVENT DELEGATION: hvata klikove na svim [data-step] dugmićima
+  root.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-step]');
+    if (!btn) return;
+
+    const wrap  = btn.closest('.clx-number') || btn.closest('.clx-group');
+    const input = wrap && wrap.querySelector('.clx-input[type="number"]');
+    if (!input || input.disabled || input.readOnly) return;
+
+    const dir  = btn.dataset.step === 'down' ? -1 : 1;
+    const cur  = parseFloat(input.value || '0') || 0;
+    const next = clamp(input, cur + dir * stepOf(input));
+    setVal(input, next);
+  });
+
+  // floating-label: postavi .filled na load
+  root.querySelectorAll('.clx-input').forEach(inp => {
+    inp.classList.toggle('filled', String(inp.value).trim() !== '');
+    inp.addEventListener('input', () => {
+      inp.classList.toggle('filled', String(inp.value).trim() !== '');
+    });
+  });
 })();
+   
+})();
+
