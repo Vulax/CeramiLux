@@ -379,6 +379,14 @@ label {
   pointer-events: none;
   font-size: 0.95rem;
 }
+
+.labelplanner{
+  color: #bbb;
+  transition: 0.3s;
+  pointer-events: none;
+  font-size: 0.95rem;
+}
+
 input:focus + label,
 input:not(:placeholder-shown) + label,
 textarea:focus + label,
@@ -535,3 +543,58 @@ canvas {
   }
 }
 
+
+/* ===== Floating label inputs (CeramiLux Planner) ===== */
+#planner .clx-group {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+#planner .clx-input {
+  width: 90%;
+  height: 52px;
+  padding: 16px 14px 6px 14px;
+  font-size: 1rem;
+  color: #e9e9ec;
+  background: rgba(18,19,22,.75);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  transition: border-color .2s ease, box-shadow .2s ease, background .3s ease;
+}
+
+#planner .clx-input:focus {
+  border-color: rgba(200,169,81,.65);
+  box-shadow: 0 0 12px rgba(200,169,81,.15);
+  background: rgba(25,26,29,.9);
+}
+
+/* Floating label */
+#planner .clx-label {
+  position: absolute !important;
+  top: 15px;
+  left: 16px;
+  font-size: 0.95rem;
+  color: rgba(230,230,240,.55);
+  pointer-events: none;
+  transition: all .18s ease;
+}
+
+/* Kada je fokus ili kad input ima tekst */
+#planner .clx-input:focus + .clx-label,
+#planner .clx-input:not(:placeholder-shown) + .clx-label {
+  top: 6px;
+  font-size: 0.78rem;
+  color: rgba(200,169,81,.95);
+  letter-spacing: .01em;
+}
+
+/* Hover */
+#planner .clx-input:hover {
+  border-color: rgba(255,255,255,.12);
+}
+
+/* Lagani efekat za sve promene */
+#planner .clx-input, 
+#planner .clx-label {
+  transition: all .22s cubic-bezier(.4,.0,.2,1);
+}
