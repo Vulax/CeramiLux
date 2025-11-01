@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CeramiLux • Room Planner</title>
+   <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    body{margin:0;background:#0b0b0c;color:#eaeaea;font-family:Inter,system-ui}
+    .wrap{max-width:1100px;margin:0 auto;padding:20px}
+    .grid{display:grid;grid-template-columns:360px 1fr;gap:18px;align-items:start}
+    @media(max-width:960px){.grid{grid-template-columns:1fr}}
+    .panel{background:#111214;border:1px solid #222428;border-radius:12px;padding:16px}
+    label{font-size:12px;color:#9aa0a6}
+    input,select{width:100%;padding:8px 10px;margin-top:4px;margin-bottom:8px;
+      border-radius:8px;border:1px solid #222428;background:#0a0b0c;color:#eaeaea}
+    .btn{background:#111;border:1px solid #8f7a3a;color:#c8a951;padding:10px 14px;border-radius:10px;cursor:pointer}
+    #viewer{height:520px;border-radius:12px;border:1px solid #222428;overflow:hidden;background:#0b0c0d}
+    .out{margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .stat{background:#0f1012;border:1px solid #222428;border-radius:10px;padding:10px}
+    .stat b{display:block;font-size:12px;color:#9aa0a6;margin-bottom:4px}
+    .val{font-size:20px;font-weight:700;color:#21c37a}
+  </style>
+</head>
+<body>
+    <header class="lux-header">
+  <nav class="nav">
+    <div class="logo">CeramiLux</div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+      <li><a href="plannersolo.html">Room Planner</a></li>
+    </ul>
+    <div class="menu-toggle">☰</div>
+  </nav>
+</header>
+    </nav>
+  <div class="wrap">
+    <br><br><br><br>
+    <div class="grid">
+      <section class="panel">
+        <label>Dužina sobe (m)</label><input id="roomLen" type="number" value="5">
+        <label>Širina sobe (m)</label><input id="roomWid" type="number" value="4">
+        <label>Dužina pločice (cm)</label><input id="tileLen" type="number" value="60">
+        <label>Širina pločice (cm)</label><input id="tileWid" type="number" value="60">
+        <label>Cena po m² (RSD)</label><input id="priceM2" type="number" value="3500">
+        <label>Komada u paketu</label><input id="perBox" type="number" value="6">
+        <label>Otpad (%)</label><input id="waste" type="number" value="8">
+        <button id="calc" class="btn">Izračunaj</button>
+        <div class="out">
+          <div class="stat"><b>Površina</b><div id="oArea" class="val">—</div></div>
+          <div class="stat"><b>Komada</b><div id="oTiles" class="val">—</div></div>
+          <div class="stat"><b>Pakovanja</b><div id="oBoxes" class="val">—</div></div>
+          <div class="stat"><b>Cena</b><div id="oCost" class="val">—</div></div>
+        </div>
+      </section>
+      <section class="panel">
+        <h2>3D pregled</h2>
+        <div id="viewer"></div>
+      </section>
+    </div>
+  </div>
+  <script defer src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
+    <script src="./planner-tiles.js"></script>
+
+
+</body>
+</html>
+

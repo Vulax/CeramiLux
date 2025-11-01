@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Onyx Serenity",
+    "description": "Luxurious onyx texture with elegant white veining and subtle reflections.",
+    "textures": {
+      "diffuse": "assets/Onyx015_1K-JPG_Color.jpg",
+      "normal": "assets/Onyx015_1K-JPG_NormalGL.jpg",
+      "roughness": "assets/Onyx015_1K-JPG_Roughness.jpg"
+    }
+  },
+  {
+    "name": "Modern Stone",
+    "description": "Polished stone tiles with a contemporary geometric pattern.",
+    "textures": {
+      "diffuse": "assets/Tiles078_1K-JPG_Color.jpg",
+      "normal": "assets/Tiles078_1K-JPG_NormalGL.jpg",
+      "roughness": "assets/Tiles078_1K-JPG_Roughness.jpg"
+    }
+  },
+  {
+    "name": "Travertine Elegance",
+    "description": "Classic travertine finish, timeless and warm in tone.",
+    "textures": {
+      "diffuse": "assets/Travertine009_1K-JPG_Color.jpg",
+      "normal": "assets/Travertine009_1K-JPG_NormalGL.jpg",
+      "roughness": "assets/Travertine009_1K-JPG_Roughness.jpg"
+    }
+  }
+]
